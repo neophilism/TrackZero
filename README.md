@@ -1,5 +1,7 @@
 # TrackZero
 
+**Development and handoff plan:** [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md).
+
 # Four-project development plan
 
 120 planned work packages: 34 Distributed Audio Engine, 32 SceneSignal, 28 Distributed Radio Engine, 26 TrackZero. The original 88-package baseline remains mapped separately; 32 work packages were added. These are roadmap identifiers, not GitHub PR numbers.
