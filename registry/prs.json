@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "repository": "neophilism/TrackZero",
+  "roadmapVersion": 1,
+  "planVerified": true,
+  "plannedPrCount": 26,
+  "observedAt": "2026-10-11T17:41:01.092Z",
+  "units": [
+    {
+      "id": "TZ-01",
+      "title": "TrackZero repository, UX and radio-only boundary",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-02",
+      "title": "Accounts and artist/label onboarding",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-03",
+      "title": "Station identity and storefront shell",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-04",
+      "title": "Catalog and complete-album management",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-05",
+      "title": "Rights review and publishing checks",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-06",
+      "title": "Drag-and-drop program sequencing",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-07",
+      "title": "Artist interstitial studio",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-08",
+      "title": "Sponsor uploads and placements",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-09",
+      "title": "Always-on station operations",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-10",
+      "title": "Guest web player and album pages",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-11",
+      "title": "Android listening application",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-12",
+      "title": "iOS listening application",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-13",
+      "title": "Contribute Sound setup and evidence UI",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-14",
+      "title": "Artist reward prices and exponential ladder UX",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-15",
+      "title": "Live points, outro vesting and reward spending",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-16",
+      "title": "Album checkout and payout experience",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-17",
+      "title": "Fan library and reward downloads",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-18",
+      "title": "Artist and sponsor reporting",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-19",
+      "title": "Additional voluntary revenue",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-20",
+      "title": "Privacy, moderation and complaints",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-21",
+      "title": "Discovery and station sharing",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-22",
+      "title": "Accessibility and battery/recovery qualification",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-23",
+      "title": "Integrated radio pilot",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-24",
+      "title": "Production rollout and creator runbook",
+      "origin": "original",
+      "prs": []
+    },
+    {
+      "id": "TZ-25",
+      "title": "Unlocked Groove creator settings and separate bonus catalog",
+      "origin": "addition",
+      "prs": []
+    },
+    {
+      "id": "TZ-26",
+      "title": "LOCKED to UNLOCKED GROOVE reveal",
+      "origin": "addition",
+      "prs": []
+    }
+  ],
+  "pullRequests": [
+    {
+      "id": 4805783025,
+      "number": 1,
+      "title": "TrackZero: specification, E2EESA policy and revised development plan",
+      "url": "https://github.com/neophilism/TrackZero/pull/1",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-09T20:57:05.000Z",
+      "updatedAt": "2026-10-09T20:59:10.000Z",
+      "closedAt": "2026-10-09T20:59:10.000Z",
+      "mergedAt": "2026-10-09T20:59:10.000Z",
+      "headSha": "981ec2d5aefc0b5de7ca0b9b03c0d61c3f266a9c",
+      "baseRef": "main",
+      "mergeCommitSha": "db1ff093103dffa09d659b0fc0698407db621ce1"
+    }
+  ]
+}
