@@ -1,3 +1,5 @@
+> **Canonical repository PR plan:** [`registry/roadmap.json`](../registry/roadmap.json). Historical original plan below; all additions and mapping updates now belong in the canonical registry.
+
 # TrackZero: canonical development plan
 
 Original source: [docs/trackzero-development-plan.md](../docs/trackzero-development-plan.md). Full detailed milestone and acceptance plan follows unchanged.
