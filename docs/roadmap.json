@@ -1234,7 +1234,7 @@
     },
     {
       "id": "SS-30",
-      "title": "Controlled 10\u201320-speaker pilot",
+      "title": "Controlled 10–20-speaker pilot",
       "depends_on": [
         "SS-29"
       ],
@@ -2321,5 +2321,7 @@
     "production_deployed": false,
     "field_validated": false,
     "independent_review": "pending"
-  }
+  },
+  "_canonicalRoadmap": "registry/roadmap.json",
+  "_canonicalRoadmapNotice": "Historical multi-repository planning snapshot; edit the local registry/roadmap.json for this repository's PR work total and mappings."
 }
