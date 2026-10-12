@@ -17,3 +17,7 @@ A **Spime** is a Bluetooth-enabled physical instrument anchor in SceneSignal: it
 All projects adopt the pinned End To End Everywhere architecture as their default. TLS and server disk encryption supplement endpoint encryption; they never substitute for it. Production assurance, native-device and field qualification are evidence gates distinct from merging development code.
 
 Implementation begins after the preceding stage. [Development plan](docs/trackzero-development-plan.md).
+
+## End-to-End Everywhere progress
+
+The canonical [security/e2eesa-status.json](security/e2eesa-status.json) records standard implementation, complete testing and independent expert review separately. Engine Room reads it automatically from GitHub. All initial stages are pending; existing profile locks and approved decisions remain authoritative. Read [adoption and independent-account instructions](docs/E2EESA_ADOPTION.md), and run `python3 scripts/validate_e2eesa_status.py`. Record validation does not establish product security or certification.
