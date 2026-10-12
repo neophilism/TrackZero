@@ -1,7 +1,7 @@
 {
   "repository": "neophilism/TrackZero",
   "title": "TrackZero",
-  "version": 1,
+  "version": 2,
   "planVerified": true,
   "plannedPrCount": 26,
   "sourceFiles": [
@@ -13,7 +13,10 @@
     {
       "id": "TZ-01",
       "title": "TrackZero repository, UX and radio-only boundary",
-      "origin": "original"
+      "origin": "original",
+      "pullRequests": [
+        1
+      ]
     },
     {
       "id": "TZ-02",
