@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "neophilism/TrackZero",
-  "roadmapVersion": 1,
+  "roadmapVersion": 2,
   "planVerified": true,
   "plannedPrCount": 26,
   "observedAt": "2026-10-11T17:41:01.092Z",
@@ -10,7 +10,10 @@
       "id": "TZ-01",
       "title": "TrackZero repository, UX and radio-only boundary",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "contributingPrs": [
+        1
+      ]
     },
     {
       "id": "TZ-02",
@@ -179,5 +182,6 @@
       "baseRef": "main",
       "mergeCommitSha": "db1ff093103dffa09d659b0fc0698407db621ce1"
     }
-  ]
+  ],
+  "contributionEvidenceNote": "contributingPrs supply yellow underway evidence, prs supply green completion evidence only after package acceptance."
 }
