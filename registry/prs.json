@@ -1,16 +1,18 @@
 {
   "schemaVersion": 1,
   "repository": "neophilism/TrackZero",
-  "roadmapVersion": 1,
+  "roadmapVersion": 2,
   "planVerified": true,
   "plannedPrCount": 26,
-  "observedAt": "2026-10-11T17:41:01.092Z",
+  "observedAt": "2026-10-12T16:28:22.377Z",
   "units": [
     {
       "id": "TZ-01",
       "title": "TrackZero repository, UX and radio-only boundary",
       "origin": "original",
-      "prs": []
+      "prs": [
+        1
+      ]
     },
     {
       "id": "TZ-02",
@@ -165,16 +167,46 @@
   ],
   "pullRequests": [
     {
+      "id": 4832051661,
+      "number": 3,
+      "title": "Port TrackZero roadmap and E2EESA integrity checks to CircleCI",
+      "url": "https://github.com/neophilism/TrackZero/pull/3",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-10-12T16:12:49Z",
+      "updatedAt": "2026-10-12T16:12:49Z",
+      "closedAt": null,
+      "mergedAt": null,
+      "headSha": "79b2c77f8b9127c5d676376b9f745674d1a928c2",
+      "baseRef": "main",
+      "mergeCommitSha": "8bd9bcd764eac711ad305d6fddfce1093513f1ef"
+    },
+    {
+      "id": 4830266059,
+      "number": 2,
+      "title": "Track E2EESA implementation, full testing and independent expert review",
+      "url": "https://github.com/neophilism/TrackZero/pull/2",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-10-12T13:42:15Z",
+      "updatedAt": "2026-10-12T14:19:02Z",
+      "closedAt": "2026-10-12T14:19:02Z",
+      "mergedAt": "2026-10-12T14:19:02Z",
+      "headSha": "e36d5ff4e6987f4c8448dbf76416a7f9537494e3",
+      "baseRef": "main",
+      "mergeCommitSha": "b78fc8ed4a367be4737697c3c351d64c3fb20a3b"
+    },
+    {
       "id": 4805783025,
       "number": 1,
       "title": "TrackZero: specification, E2EESA policy and revised development plan",
       "url": "https://github.com/neophilism/TrackZero/pull/1",
       "state": "closed",
       "draft": false,
-      "createdAt": "2026-10-09T20:57:05.000Z",
-      "updatedAt": "2026-10-09T20:59:10.000Z",
-      "closedAt": "2026-10-09T20:59:10.000Z",
-      "mergedAt": "2026-10-09T20:59:10.000Z",
+      "createdAt": "2026-10-09T20:57:05Z",
+      "updatedAt": "2026-10-09T20:59:10Z",
+      "closedAt": "2026-10-09T20:59:10Z",
+      "mergedAt": "2026-10-09T20:59:10Z",
       "headSha": "981ec2d5aefc0b5de7ca0b9b03c0d61c3f266a9c",
       "baseRef": "main",
       "mergeCommitSha": "db1ff093103dffa09d659b0fc0698407db621ce1"
