@@ -1,0 +1,28 @@
+version: 2.1
+
+# Matches the two existing GitHub Actions workflows. A planning-only
+# repository does not claim comprehensive code coverage.
+jobs:
+  planning:
+    docker:
+      - image: cimg/node:24.19.0
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Strict roadmap validation
+          command: node scripts/check-roadmap.mjs
+  security-status-record:
+    docker:
+      - image: cimg/python:3.12
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Status record integrity, not product security certification
+          command: python3 scripts/validate_e2eesa_status.py
+workflows:
+  existing-required-checks:
+    jobs:
+      - planning
+      - security-status-record
