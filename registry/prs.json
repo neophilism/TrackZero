@@ -1,9 +1,15 @@
 {
-  "schemaVersion": 1,
   "repository": "neophilism/TrackZero",
-  "roadmapVersion": 2,
+  "title": "TrackZero",
   "planVerified": true,
   "plannedPrCount": 26,
+  "sourceFiles": [
+    "docs/roadmap.json",
+    "docs/DEVELOPMENT_PLAN.md"
+  ],
+  "scopeNote": "Units filtered by this repository prefix from the multi-repository shared roadmap. Other repository units are not counted here.",
+  "schemaVersion": 1,
+  "roadmapVersion": 2,
   "observedAt": "2026-10-12T16:28:22.377Z",
   "units": [
     {
@@ -12,157 +18,235 @@
       "origin": "original",
       "prs": [
         1
-      ]
+      ],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-02",
       "title": "Accounts and artist/label onboarding",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-03",
       "title": "Station identity and storefront shell",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-04",
       "title": "Catalog and complete-album management",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-05",
       "title": "Rights review and publishing checks",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-06",
       "title": "Drag-and-drop program sequencing",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-07",
       "title": "Artist interstitial studio",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-08",
       "title": "Sponsor uploads and placements",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-09",
       "title": "Always-on station operations",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-10",
       "title": "Guest web player and album pages",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-11",
       "title": "Android listening application",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-12",
       "title": "iOS listening application",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-13",
       "title": "Contribute Sound setup and evidence UI",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-14",
       "title": "Artist reward prices and exponential ladder UX",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-15",
       "title": "Live points, outro vesting and reward spending",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-16",
       "title": "Album checkout and payout experience",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-17",
       "title": "Fan library and reward downloads",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-18",
       "title": "Artist and sponsor reporting",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-19",
       "title": "Additional voluntary revenue",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-20",
       "title": "Privacy, moderation and complaints",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-21",
       "title": "Discovery and station sharing",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-22",
       "title": "Accessibility and battery/recovery qualification",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-23",
       "title": "Integrated radio pilot",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-24",
       "title": "Production rollout and creator runbook",
       "origin": "original",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-25",
       "title": "Unlocked Groove creator settings and separate bonus catalog",
       "origin": "addition",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     },
     {
       "id": "TZ-26",
       "title": "LOCKED to UNLOCKED GROOVE reveal",
       "origin": "addition",
-      "prs": []
+      "prs": [],
+      "dependsOn": [],
+      "externalDependencies": [],
+      "externalPrerequisites": []
     }
   ],
   "pullRequests": [
