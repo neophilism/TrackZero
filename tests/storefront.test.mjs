@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';import test from 'node:test';import {validateStationStorefront} from '../src/storefront.mjs';
+const valid={id:'station-01',name:'Station One',description:'Broadcaster details',offers:[{id:'album-001',title:'Full album',type:'complete_product',available:true}]};
+test('renders validated station metadata and complete-product offers',()=>{const station=validateStationStorefront(valid);assert.equal(station.offers[0].type,'complete_product');assert.equal(station.name,'Station One');});
+test('rejects unknown, inactive and individual-track purchases',()=>{for(const x of [{...valid,id:'?'},{...valid,artworkUrl:'javascript:alert(1)'},{...valid,offers:[{...valid.offers[0],type:'track'}]},{...valid,offers:[{...valid.offers[0],available:false}]}])assert.throws(()=>validateStationStorefront(x));});
