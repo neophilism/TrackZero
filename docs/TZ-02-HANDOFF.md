@@ -1,4 +1,6 @@
-# TZ-02 onboarding handoff
+# TZ-02 onboarding handoff (historical)
+
+This records the earlier documentation-only snapshot. Current local software scope and validation are tracked in [TZ-02-IMPLEMENTATION.md](TZ-02-IMPLEMENTATION.md).
 
 Status: unimplemented; dependency reconciliation required before integrated acceptance.
 
