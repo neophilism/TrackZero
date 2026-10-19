@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {renderStationPage,renderAlbumPage,GuestPlayer,createGuestHandler} from '../src/guest-radio.mjs';
+import {renderStationPage,renderAlbumPage,GuestPlayer,bindGuestControls,createGuestHandler} from '../src/guest-radio.mjs';
 const station={id:'s1',name:'Radio <One>',description:'A live & linear station'};
 const album={id:'a1',title:'First <Album>',artist:'A & B',artworkUrl:'https://art.example/a.jpg'};
 test('public pages escape metadata, link complete albums, and expose no picker or media secrets',()=>{
@@ -45,4 +45,18 @@ test('adapter failure reports interruption without leaving a live session',async
   const player=new GuestPlayer({joinLive:async()=>({start:async()=>{throw Error('network')},close:()=>{++closed}})},()=>{});
   await assert.rejects(player.play('s1'));
   assert.equal(player.state,'INTERRUPTED');assert.equal(closed,1);
+});
+test('accessible controls bind explicit play and stop without route navigation',async()=>{
+  const element=()=>({disabled:false,textContent:'',dataset:{station:'s1'},handlers:new Map(),
+    addEventListener(type,fn){this.handlers.set(type,fn)},removeEventListener(type){this.handlers.delete(type)},
+    click(){this.handlers.get('click')?.()}});
+  const play=element(),stop=element(),status=element();
+  const root={querySelector:selector=>selector.includes('play')?play:selector.includes('stop')?stop:status};
+  let joined=0,closed=0;
+  const dispose=bindGuestControls(root,{joinLive:async()=>{++joined;return {start:async()=>{},close:()=>{++closed}}}});
+  assert.equal(status.textContent,'Stopped');play.click();
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(joined,1);assert.equal(status.textContent,'Playing live radio');assert.equal(stop.disabled,false);
+  stop.click();assert.equal(status.textContent,'Stopped');assert.equal(closed,1);
+  dispose();assert.equal(play.handlers.size,0);
 });

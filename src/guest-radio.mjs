@@ -82,6 +82,28 @@ export class GuestPlayer{
   }
 }
 
+/** Attach the transport-neutral controller to the station page's accessible controls. */
+export function bindGuestControls(root,adapter){
+  const play=root?.querySelector?.('[data-action="play"]');
+  const stop=root?.querySelector?.('[data-action="stop"]');
+  const status=root?.querySelector?.('[role="status"]');
+  if(!play||!stop||!status)throw new Error('Guest controls required');
+  const player=new GuestPlayer(adapter,state=>{
+    status.textContent={STOPPED:'Stopped',CONNECTING:'Connecting to live radio',
+      PLAYING:'Playing live radio',INTERRUPTED:'Playback interrupted'}[state];
+    play.disabled=state==='CONNECTING'||state==='PLAYING';
+    stop.disabled=state==='STOPPED';
+  });
+  const onPlay=()=>{player.play(play.dataset.station).catch(()=>{});};
+  const onStop=()=>player.stop();
+  play.addEventListener('click',onPlay);stop.addEventListener('click',onStop);
+  player.emit('STOPPED');
+  return ()=>{
+    play.removeEventListener('click',onPlay);stop.removeEventListener('click',onStop);
+    player.stop();
+  };
+}
+
 export function createGuestHandler({getStation,getAlbums,getAlbum}){
   if(![getStation,getAlbums,getAlbum].every(fn=>typeof fn==='function'))throw new Error('Public metadata providers required');
   return async request=>{
@@ -103,7 +125,7 @@ export function createGuestHandler({getStation,getAlbums,getAlbum}){
         html=renderAlbumPage(album);
       }else return new Response('Not found',{status:404});
       return new Response(html,{headers:{'content-type':'text/html; charset=utf-8',
-        'cache-control':'public, max-age=60','content-security-policy':"default-src 'none'; img-src https:; style-src 'self'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'",'x-content-type-options':'nosniff'}});
+        'cache-control':'public, max-age=60','content-security-policy':"default-src 'none'; script-src 'self'; img-src https:; style-src 'self'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'",'x-content-type-options':'nosniff'}});
     }catch(error){return new Response(error instanceof GuestError?error.code:'Metadata unavailable',
       {status:error instanceof GuestError?error.status:503});}
   };
