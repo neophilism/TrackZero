@@ -1,0 +1,5 @@
+# TZ-06 program sequencing primitive
+
+The branch now has an ID-stable program editor controller and browser adapter. Keyboard Move up/Move down controls, pointer drag/drop, live announcements, undo and explicit save failures share one immutable sequence. A local SQLite store and HTTP boundary persist versioned programs with optimistic conflict checks. A server-verified broadcaster identity and station authorization callback are required for reads and writes; client-supplied roles cannot grant access. `node --test tests/*.test.mjs` covers ordering, accessibility markup, denial, restart persistence, stale versions and interrupted writes locally.
+
+This is not a radio-engine scheduler or entitlement grant. The original TZ-06 plan depends on TZ-05 and DRE-07; imported empty dependencies do not prove either accepted. Production identity, station authorization, program rights, schedule conflict rules, DRE scheduling, browser interaction testing and product CI remain pending. A sequence move never authorizes broadcast.
