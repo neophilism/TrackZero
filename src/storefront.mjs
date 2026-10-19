@@ -2,7 +2,7 @@
 const slug = /^[a-z0-9-]{3,80}$/;
 
 function artwork(value, trustedOrigins) {
-  if (value === undefined) return null;
+  if (value === undefined || value === null) return null;
   if (typeof value !== 'string' || !Array.isArray(trustedOrigins)) throw new Error('Invalid artwork URL');
   let url;
   try { url = new URL(value); } catch { throw new Error('Invalid artwork URL'); }
