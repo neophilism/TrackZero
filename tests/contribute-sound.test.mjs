@@ -1,0 +1,43 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {ContributionSetup,renderContributionSetup} from '../src/contribute-sound.mjs';
+const stream=()=>{const tracks=[{stops:0,stop(){this.stops++},addEventListener(){}}];return {getTracks:()=>tracks,tracks};};
+test('measurement requires explicit opt-in and verified active speaker route',async()=>{
+  let requests=0;const views=[],mic=stream();
+  const setup=new ContributionSetup({requestMic:async()=>{requests++;return mic},
+    verifiedRoute:async()=>({verified:true,active:true,output:'bluetooth_speaker'}),onChange:view=>views.push(view)});
+  assert.equal(requests,0);await setup.enable();assert.equal(requests,1);
+  assert.equal(setup.state,'READY');assert.equal(views.at(-1).pointsEligible,false);
+  setup.disable();assert.equal(mic.tracks[0].stops,1);assert.equal(setup.state,'OFF');
+});
+test('headphones and self-declared or inactive speakers stop microphone and grant no eligibility',async()=>{
+  for(const route of [{verified:true,active:true,output:'headphones'},
+    {verified:false,active:true,output:'bluetooth_speaker'},
+    {verified:true,active:false,output:'bluetooth_speaker'}]){
+    const mic=stream(),views=[];
+    const setup=new ContributionSetup({requestMic:async()=>mic,verifiedRoute:async()=>route,onChange:v=>views.push(v)});
+    await setup.enable();assert.equal(setup.state,'UNSUPPORTED');
+    assert.equal(mic.tracks[0].stops,1);assert.equal(views.at(-1).pointsEligible,false);
+  }
+});
+test('permission denial and route outage leave measurement off',async()=>{
+  const denied=new ContributionSetup({requestMic:async()=>{const e=Error();e.name='NotAllowedError';throw e},
+    verifiedRoute:async()=>({}),onChange:()=>{}});
+  await denied.enable();assert.equal(denied.state,'DENIED');
+  const mic=stream();const outage=new ContributionSetup({requestMic:async()=>mic,
+    verifiedRoute:async()=>{throw Error('offline')},onChange:()=>{}});
+  await outage.enable();assert.equal(outage.state,'INTERRUPTED');assert.equal(mic.tracks[0].stops,1);
+});
+test('disabling before asynchronous permission result stops late capture',async()=>{
+  let resolve;const mic=stream();
+  const setup=new ContributionSetup({requestMic:()=>new Promise(r=>resolve=r),
+    verifiedRoute:async()=>({verified:true,active:true,output:'bluetooth_speaker'}),onChange:()=>{}});
+  const pending=setup.enable();setup.disable();resolve(mic);await pending;
+  assert.equal(setup.state,'OFF');assert.equal(mic.tracks[0].stops,1);
+});
+test('safe disclosure does not invent points from consent',()=>{
+  const view={state:'READY',label:'Local measurement is on; contribution still requires verified output evidence',pointsEligible:false};
+  const html=renderContributionSetup(view);
+  assert.match(html,/Microphone access is optional/);assert.match(html,/Headphones, mute/);
+  assert.doesNotMatch(html,/you earned|pointsEligible=true/);
+  assert.throws(()=>renderContributionSetup({...view,pointsEligible:true}));
+});

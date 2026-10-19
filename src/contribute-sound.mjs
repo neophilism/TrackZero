@@ -1,0 +1,59 @@
+export class ContributionError extends Error{
+  constructor(code){super(code);this.code=code;}
+}
+const labels={OFF:'Off',REQUESTING:'Requesting microphone permission',UNSUPPORTED:'Listening is available; speaker contribution is unavailable on this route',
+  READY:'Local measurement is on; contribution still requires verified output evidence',DENIED:'Microphone permission denied',
+  INTERRUPTED:'Measurement interrupted'};
+/** Consent and eligibility display only; neither a points issuer nor an acoustic meter. */
+export class ContributionSetup{
+  constructor({requestMic,verifiedRoute,onChange}){
+    if(typeof requestMic!=='function'||typeof verifiedRoute!=='function'||typeof onChange!=='function')
+      throw new Error('Microphone, trusted route provider and state callback required');
+    this.requestMic=requestMic;this.verifiedRoute=verifiedRoute;this.onChange=onChange;
+    this.state='OFF';this.stream=null;this.epoch=0;this.notify();
+  }
+  notify(){this.onChange({state:this.state,label:labels[this.state],pointsEligible:false});}
+  async enable(){
+    this.disable();const request=++this.epoch;this.state='REQUESTING';this.notify();
+    let stream;
+    try{
+      stream=await this.requestMic({audio:true,video:false});
+      if(request!==this.epoch){stream?.getTracks?.().forEach(track=>track.stop());return;}
+      if(!stream||typeof stream.getTracks!=='function')throw new ContributionError('INVALID_MIC_STREAM');
+      const route=await this.verifiedRoute();
+      if(request!==this.epoch){stream.getTracks().forEach(track=>track.stop());return;}
+      // A route declaration from the page or a connected-but-unused speaker is not evidence.
+      if(!route||route.verified!==true||route.active!==true||route.output!=='bluetooth_speaker'){
+        stream.getTracks().forEach(track=>track.stop());this.state='UNSUPPORTED';this.notify();return;
+      }
+      this.stream=stream;
+      for(const track of stream.getTracks())track.addEventListener?.('ended',()=>this.interrupt());
+      this.state='READY';this.notify();
+    }catch(error){
+      stream?.getTracks?.().forEach(track=>track.stop());
+      if(request!==this.epoch)return;
+      this.state=error?.name==='NotAllowedError'?'DENIED':'INTERRUPTED';this.notify();
+    }
+  }
+  interrupt(){
+    if(this.state==='OFF')return;
+    ++this.epoch;this.stream?.getTracks().forEach(track=>track.stop());this.stream=null;
+    this.state='INTERRUPTED';this.notify();
+  }
+  disable(){
+    ++this.epoch;this.stream?.getTracks().forEach(track=>track.stop());this.stream=null;
+    this.state='OFF';this.notify();
+  }
+}
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+export function renderContributionSetup(view){
+  if(!view||!Object.hasOwn(labels,view.state)||view.label!==labels[view.state]||view.pointsEligible!==false)
+    throw new ContributionError('INVALID_CONTRIBUTION_VIEW');
+  return `<section aria-labelledby="contribute-title"><h2 id="contribute-title">Contribute Sound</h2>`+
+    `<p>Microphone access is optional. Measurement stays on this device by default. Listening works without it.</p>`+
+    `<p>Headphones, mute, unsupported routes and unverified speakers earn no speaker points. `+
+    `Permission alone never earns points; qualified output evidence and a complete broadcast are required.</p>`+
+    `<button type="button" data-action="enable">Enable local measurement</button>`+
+    `<button type="button" data-action="disable">Turn off</button>`+
+    `<p role="status" aria-live="polite">${esc(view.label)}</p></section>`;
+}
