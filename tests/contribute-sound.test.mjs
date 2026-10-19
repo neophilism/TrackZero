@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {ContributionSetup,renderContributionSetup} from '../src/contribute-sound.mjs';
+import {ContributionSetup,renderContributionSetup,bindContributionSetup} from '../src/contribute-sound.mjs';
 const stream=()=>{const tracks=[{stops:0,stop(){this.stops++},addEventListener(){}}];return {getTracks:()=>tracks,tracks};};
 test('measurement requires explicit opt-in and verified active speaker route',async()=>{
   let requests=0;const views=[],mic=stream();
@@ -40,4 +40,17 @@ test('safe disclosure does not invent points from consent',()=>{
   assert.match(html,/Microphone access is optional/);assert.match(html,/Headphones, mute/);
   assert.doesNotMatch(html,/you earned|pointsEligible=true/);
   assert.throws(()=>renderContributionSetup({...view,pointsEligible:true}));
+});
+test('UI controls bind opt-in and stop capture on disposal',async()=>{
+  const element=()=>({disabled:false,textContent:'',handlers:new Map(),
+    addEventListener(type,fn){this.handlers.set(type,fn)},removeEventListener(type){this.handlers.delete(type)},
+    click(){this.handlers.get('click')?.()}});
+  const enable=element(),disable=element(),status=element(),mic=stream();
+  const root={querySelector:s=>s.includes('enable')?enable:s.includes('disable')?disable:status};
+  const dispose=bindContributionSetup(root,{requestMic:async()=>mic,
+    verifiedRoute:async()=>({verified:true,active:true,output:'bluetooth_speaker'})});
+  assert.equal(status.textContent,'Off');enable.click();
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.match(status.textContent,/Local measurement is on/);
+  dispose();assert.equal(mic.tracks[0].stops,1);assert.equal(enable.handlers.size,0);
 });

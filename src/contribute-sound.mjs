@@ -57,3 +57,23 @@ export function renderContributionSetup(view){
     `<button type="button" data-action="disable">Turn off</button>`+
     `<p role="status" aria-live="polite">${esc(view.label)}</p></section>`;
 }
+
+/** The host supplies the trusted route probe; UI never reads a user-supplied route claim. */
+export function bindContributionSetup(root,{requestMic,verifiedRoute}){
+  const enable=root?.querySelector?.('[data-action="enable"]');
+  const disable=root?.querySelector?.('[data-action="disable"]');
+  const status=root?.querySelector?.('[role="status"]');
+  if(!enable||!disable||!status)throw new Error('Contribution controls required');
+  const setup=new ContributionSetup({requestMic,verifiedRoute,onChange:view=>{
+    status.textContent=view.label;
+    enable.disabled=view.state==='REQUESTING'||view.state==='READY';
+    disable.disabled=view.state==='OFF';
+  }});
+  const onEnable=()=>{setup.enable().catch(()=>setup.interrupt());};
+  const onDisable=()=>setup.disable();
+  enable.addEventListener('click',onEnable);disable.addEventListener('click',onDisable);
+  return ()=>{
+    enable.removeEventListener('click',onEnable);disable.removeEventListener('click',onDisable);
+    setup.disable();
+  };
+}
