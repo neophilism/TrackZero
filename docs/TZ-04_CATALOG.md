@@ -1,0 +1,5 @@
+# TZ-04 album projection contract
+
+This branch projects complete-album public metadata and matches station offers to those albums. It now requires an injected trusted verifier for every album; client-supplied `rightsVerified` or `available` booleans cannot authorize publication. The selection validator is self-contained because TZ-03's storefront module is on a separate, unmerged branch. It rejects duplicate, malformed, unavailable and individual-track offers. `node --test tests/*.test.mjs` exercises the projection and denial paths locally.
+
+This is not a verified catalog service. The original plan depends on TZ-03 and DRE-04, while imported dependency arrays are empty. The exact DRE-04 adapter and real creator/publisher rights source remain unverified here. No checkout, entitlement, payment, synchronized artwork, pagination or production release is implemented. Before integration, reconcile TZ-03's storefront contract, bind the verifier to an authenticated DRE catalog/rights provider, and test cross-role denial and interrupted provider operations. The planning CI currently does not run these product tests.
