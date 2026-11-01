@@ -1,0 +1,5 @@
+# TZ-15 live artist points projection
+
+The draft consumes trusted issuer events and displays one artist's provisional and spendable balances without issuing points. A completed outro may vest only when the terminal event carries zero provisional points. Interruption forfeits provisional points, stale sequence numbers and invalid transitions are denied, and artist wallets remain separate. Returned view snapshots are immutable so UI code cannot change the stored projection. A renderer rejects a forged nonzero unknown balance or inconsistent terminal state.
+
+`node --test tests/*.test.mjs` passes four local Node 24 tests covering vesting, forfeiture, replay denial, artist isolation, immutable views and conservative rendering. The repository's planning CI does not run this suite. The original plan depends on TZ-14 and DRE-18; no authenticated issuer stream, verified output event, authoritative wallet reconciliation, outro marker or atomic redemption adapter has been independently verified in this assignment. PR #20 stays draft; these views do not grant or spend rewards.
