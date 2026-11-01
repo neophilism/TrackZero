@@ -1,0 +1,7 @@
+# TZ-10 guest web player and album pages
+
+The draft renders public station and complete-album metadata, with explicit-play live-session controls and an accessible status. Station and album text is escaped. Artwork requires an operator-configured HTTPS origin allowlist, and the page content security policy permits images only from those origins. There is no song picker, skip, on-demand playback, media URL, playback token or private manifest in server-rendered HTML.
+
+The transport-neutral `GuestPlayer` requires a trusted DRE live adapter with `joinLive(stationId, {signal})` returning a session with `start()` and `close()`. Stop aborts pending joins and closes sessions; late joins cannot start playback. Synchronous or asynchronous close failures clear the stale session and show interruption rather than a false playing state. The host still must bind controls, provide guest authorization and preserve endpoint-encrypted media; no DRE-11 interface or actual browser playback has been verified here.
+
+`node --test tests/*.test.mjs` passes nine local Node 24 tests for hostile metadata/artwork, strict page policy, missing provider data, explicit play, delayed join, adapter interruption and accessible controls. Product tests are absent from the repository's planning CI. The original plan requires TZ-09 and DRE-11, both still awaiting verified integration in this assignment. No purchase, production stream, device or field continuity claim is made; PR #15 remains draft.
